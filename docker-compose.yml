@@ -42,6 +42,17 @@ services:
     volumes:
       - ./docker/hive/lib/postgresql-42.7.3.jar:/opt/hive/lib/postgresql-42.7.3.jar
 
+  spark:
+    image: spark:4.1.1-python3
+    container_name: lakehouse-spark
+    environment:
+      PATH: /opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    ports:
+      - "4040:4040"
+    volumes:
+      - ./spark:/opt/spark-apps
+    command: tail -f /dev/null
+
 volumes:
   minio_data:
   postgres_data:
